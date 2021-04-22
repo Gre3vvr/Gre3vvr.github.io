@@ -30,7 +30,7 @@
    <a href="/archive.html">$ARCHIVE</a>
    <a href="mailto:gre3vvr@gmail.com">$MAIL</a>
    <a href="https://github.com/Gre3vvr">$GIT</a>
-   <a href="twitter link here">$THM</a>
+   <a href="https://tryhackme.com/p/Gre3vvr">$THM</a>
    <a href="/about.html">$ABOUT</a>
 </nav>
 
@@ -45,6 +45,26 @@
 <p>*Nikto <img src="/img/rick/nikto.png" alt="nikto" /> From our scan we find a login page : /login.php</p>
 <p>*Dirb <img src="/img/rick/dirb.png" alt="dirb" /> Couple of things worth noting here is we have an assets directory containing site images and Javascript. The index or homepage is also shown here. Robots.txt is something definitely worth checking out.</p>
 <h2 id="flags">Flags</h2>
+<p>First let’s take a look at our login page that we pulled from nikto: <img src="/img/rick/login.png" alt="login page" /></p>
+<p>Looks like we need some credentials, looking back at our home page we see an interesting piece of information: <img src="/img/rick/source.png" alt="index source" /></p>
+<p>Looks like we have a username, now all we need now is a password. Looking back at dirb we saw a robots.txt file, maybe that will give us something useful? <img src="/img/rick/robots.png" alt="robots.txt" /></p>
+<p>The contents of the .txt show a phrase, our password maybe? If we enter both into their respective fields we successfully sign in and land on a peculiar page: ![signed on(/img/rick/options.png)</p>
+<h3 id="st-flag">1st Flag</h3>
+<p>Looks like we are going in the right direction. We have a box that looks like we can enter some commands into. Let’s enter some basic commands and see what information we can gather from it:</p>
+<p>*whoami <img src="/img/rick/whoami.png" alt="whoami" /></p>
+<p>*uname <img src="/img/rick/uname.png" alt="uname" /></p>
+<p>*ls -la <img src="/img/rick/ls_la.png" alt="ls -la" /></p>
+<p>The file Sup3rS3cretPickl3Ingred.txt looks promising, let’s try to cat it: <img src="/img/rick/error.png" alt="error" /></p>
+<p>No good, maybe we can access it another way? Since its located with other directories accessible through our browser (i.e. /assets) we can access it through their and get our first flag.</p>
+<h3 id="nd-flag">2nd Flag</h3>
+<p>Moving onto the next flag we recall another file called clue.txt we can take a look at: <img src="/img/rick/clue.png" alt="clue" /></p>
+<p>Looks like we may need to do some exploring of the file system to find our other flags. Perhaps we can attempt a directory traversal to see our other options: <img src="/img/rick/directory_traversal.png" alt="traverse" /></p>
+<p>We have a couple of different routes we can take, two files in this list interest me, the first being /home and the other being /root. If we take a look inside /home we find: <img src="/img/rick/deeper.png" alt="traverse!" /> &gt;I have since found that I do not need to keep the same syntax since finding the proper folder</p>
+<p>We can’t use cat to look at the contents of “second ingredients” but maybe we can use another command instead, let’s try using <strong>less</strong> and find the 2nd flag.</p>
+<h3 id="rd-flag">3rd Flag</h3>
+<p>Recall the other file /root that looked interesting. We need root permissions to view inside of the file but lets take a look at what we can do using www-data: <img src="/img/rick/sudo.png" alt="sudo" /></p>
+<p>We don’t need a password to run sudo commands (very bad!). This makes getting into the root directory rather easy: <img src="/img/rick/rootfile.png" alt="root" /></p>
+<p>3rd.txt looks promising, we use <strong>less</strong> one more time and we get our 3rd and final flag.</p>
 </article>
 
 <footer>
