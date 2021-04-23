@@ -22,10 +22,6 @@ a {
   color:#00FF00;
 }
 
-/* a:visited { */
-/*   color: #b8bb26; */
-/* } */
-
 a:hover {
   color:#33FF00;
   cursor:pointer;
@@ -56,12 +52,12 @@ a:active {
 
 a::-moz-selection {
   background: #CC00FF;
-  color: #0645ad;
+  color: #CC00FF;
 }
 
 a::selection {
   background: #CC00FF;
-  color: #0645ad;
+  color: #CC00FF;
 }
 
 p {
